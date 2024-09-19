@@ -8,4 +8,22 @@
 <body>
 
 </body>
+<script>
+    try {
+        const loginRes = window.apiFetch({
+          method: 'GET',
+          url: '/admin/profile',
+        })
+        switch (loginRes.code) {
+          case 0:
+          case '0':
+            location.href = '/pages/';
+            break;
+          default:
+            break;
+        }
+      } catch (e) {
+        console.error(e)
+      }
+</script>
 </html>

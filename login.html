@@ -8,17 +8,47 @@
 <body>
     <header></header>
     <main>
-      <section></section>
+      <section>
+        <form id="form_login" action="POST">
+          <input type="email" placeholder="" value="">
+          <input type="password" placeholder="" value="">
+          <button></button>
+        </form>
+      </section>
     </main>
     <footer></footer>
   </body>
   <script type="module">
-    import { initialize } from "./script.js";
+    import { initialize } from './script.js';
     (async () => {
       await initialize();
 
     })();
 
+  </script>
+  <script type="module">
+    document.querySelector('#form_login').addEventListener('submit', () => {
+      try {
+        const loginRes = window.apiFetch({
+          method: 'POST',
+          url: '/admin/login',
+          body: {
+            email: '',
+            password: ''
+          }
+        })
+        switch (loginRes.code) {
+          case 0:
+          case '0':
+            location.href = '/pages/';
+            break;
+          default:
+            break;
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    });
   </script>
 
   </html>
